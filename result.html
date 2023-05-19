@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+  </head>
+  <body>
+    <h2 class="msr_h2">英単語テストを作成</h2>
+    <div class="container">
+      <h3 class="msr_h3">単語テストの作成が完了しました</h3>
+      <ul type="circle">
+        <li><a href="<?= docetojurl ?>" target="_blank" class="link">英語　　→　日本語　　単語テストへ移動　（編集可能）</a>
+        <li><a href="<?= docjtoeurl ?>" target="_blank" class="link">日本語　→　英語　　　単語テストへ移動　（編集可能）</a>
+      </ul>
+      <ul type="circle">
+        <li><a href="<?= etojpdfurl ?>" target="_blank" class="link">英語　　→　日本語　（PDF形式）単語テストへ移動</a>
+        <li><a href="<?= jtoepdfurl ?>" target="_blank" class="link">日本語　→　英語　　（PDF形式）単語テストへ移動</a>
+      </ul>
+      <br><br>
+      <h4 class="msr_h4">以下の内容から作成しました</h4>
+      <?= grade ?>
+      <br>
+      <?= shuffleqs ?>
+      <br>
+      <?= contents ?>
+      <br>
+      <ul type="circle">
+        <li><b><a href="<?= toppageurl ?>" class="link">作成画面に戻る</a></b>
+      </ul>
+    </div>
+  </body>
+</html>
