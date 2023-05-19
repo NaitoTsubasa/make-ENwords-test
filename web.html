@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+  </head>
+  <body>
+    <header>
+      <h2 class="msr_h2">英単語テストを作成</h2>
+    </header>
+    <form method="post"action="<?= ScriptApp.getService().getUrl()?>">
+      <div class="select-grade">
+        <h3 class="msr_h3">テキストを選択</h3>
+        <label>
+          <input id="foresta1" type="radio" name="grade" value="フォレスタ1年生" onclick="formSwitch()" checked>
+          <span>フォレスタ1年生　　</span>
+        </label>
+        <label>
+          <input id="foresta1" type="radio" name="grade" value="フォレスタ2年生" onclick="formSwitch()">
+          <span>フォレスタ2年生　　</span>
+        </label>
+        <label>
+          <input id="foresta1" type="radio" name="grade" value="フォレスタ3年生" onclick="formSwitch()">
+          <span>フォレスタ3年生</span>
+        </label>
+      </div>
+      <br>
+      <div>
+        <div>
+          <h3 class="msr_h3">問題をシャッフル</h3>
+          <label>
+            <input type="radio" name="shuffle" value="False" checked>
+            <span>しない　　</span>
+          </label>
+          <label>
+            <input type="radio" name="shuffle" value="True">
+            <span>する　　</span>
+          </label>
+          <label>
+            <input type="radio" name="shuffle" value="shuffle33">
+            <span>シャッフル33問（1ページ）　　</span>
+          </label>
+          <label>
+            <input type="radio" name="shuffle" value="shuffle66">
+            <span>シャッフル66問（2ページ）</span>
+          </label>
+        </div>
+      </div>
+      <br>
+      <h3 class="msr_h3"> </h3>
+      <div id="firstgrade">
+        <div class="form-check">
+          <input class="form-check-input" id="1-12" type="checkbox" value="P.12" name="page">
+          <label for="1-12">P.12 Lesson1 About Me Part1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-16" type="checkbox" value="P.16" name="page">
+          <label for="1-16">P.16 Lesson1 About Me Part2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-20" type="checkbox" value="P.20" name="page">
+          <label for="1-20">P.20 Lesson1 About Me Part3</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-24" type="checkbox" value="P.24" name="page">
+          <label for="1-24">P.24 GET Plus 1 どんな食べものが好きですか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-28" type="checkbox" value="P.28" name="page">
+          <label for="1-28">P.28 Lesson2 English Camp Prat1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-32" type="checkbox" value="P.32" name="page">
+          <label for="1-32">P.32 Lesson2 English Camp Part2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-36" type="checkbox" value="P.36" name="page">
+          <label for="1-36">P.36 GET Plus 2 チョウが何匹見えますか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-40" type="checkbox" value="P.40" name="page">
+          <label for="1-40">P.40 Lesson3 Our New Friend Part1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-44" type="checkbox" value="P.44" name="page">
+          <label for="1-44">P.44 Lesson3 Our New Friend Part2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-48" type="checkbox" value="P.48" name="page">
+          <label for="1-48">P.48 Lesson3 Our New Friend Part3</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-52" type="checkbox" value="P.52" name="page">
+          <label for="1-52">P.52 Take Action! Listen1 Talk1 商品の説明/ねぇ,聞いて!</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-54" type="checkbox" value="P.54" name="page">
+          <label for="1-54">P.54 Project1 理想のロボットを発表しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-60" type="checkbox" value="P.60" name="page">
+          <label for="1-60">P.60 Lesson4 My Family, My Hometown GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-64" type="checkbox" value="P.64" name="page">
+          <label for="1-64">P.64 Lesson4 My Family, My Hometown GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-72" type="checkbox" value="P.72" name="page">
+          <label for="1-72">P.72 Lesson4 My Family, My Hometown 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-74" type="checkbox" value="P.74" name="page">
+          <label for="1-74">P.74 Lesson4 My Family, My Hometown Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-76" type="checkbox" value="P.76" name="page">
+          <label for="1-76">P.76 4-Write 4-Speak English Camp の申込書を記入しよう/サイコロトークをしよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-78" type="checkbox" value="P.78" name="page">
+          <label for="1-78">P.78 Take Action! 競技場のアナウンス</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-82" type="checkbox" value="P.82" name="page">
+          <label for="1-82">P.82 Take Action! Talk2 またあとでね</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-84" type="checkbox" value="P.84" name="page">
+          <label for="1-84">P.84 GET Plus3 どちらがほしいですか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-86" type="checkbox" value="P.86" name="page">
+          <label for="1-86">P.86 Lesson5 School Life in the U.S.A. GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-90" type="checkbox" value="P.90" name="page">
+          <label for="1-90">P.90 Lesson5 School Life in the U.S.A. GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-96" type="checkbox" value="P.96" name="page">
+          <label for="1-96">P.96 Lesson5 School Life in the U.S.A. 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-98" type="checkbox" value="P.98" name="page">
+          <label for="1-98">P.98 Lesson5 School Life in the U.S.A. Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-100" type="checkbox" value="P.100" name="page">
+          <label for="1-100">P.100 5-Write 学校生活や行事を紹介するメールを書こう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-102" type="checkbox" value="P.102" name="page">
+          <label for="1-102">P.102 Take Action! Listen3 Talk3 映画の紹介/青いTシャツはいかがですか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-104" type="checkbox" value="P.104" name="page">
+          <label for="1-104">P.104 GET Plus 4 これはだれの鍵ですか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-106" type="checkbox" value="P.106" name="page">
+          <label for="1-106">P.106 Lesson6 Discover Japan GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-110" type="checkbox" value="P.110" name="page">
+          <label for="1-110">P.110 Lesson6 Discover Japan GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-118" type="checkbox" value="P.118" name="page">
+          <label for="1-118">P.118 Lesson6 Discover Japan 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-120" type="checkbox" value="P.120" name="page">
+          <label for="1-120">P.120 Lesson6 Discover Japan Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-122" type="checkbox" value="P.122" name="page">
+          <label for="1-122">P.122 6-Write 思い出を絵日記に書こう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-124" type="checkbox" value="P.124" name="page">
+          <label for="1-124">P.124 Take Action! Listen4 Talk4 ボイスメッセージ/ABCケーキはどこですか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-126" type="checkbox" value="P.126" name="page">
+          <label for="1-126">P.126 Project2 英語のタウンガイドを作ろう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-128" type="checkbox" value="P.128" name="page">
+          <label for="1-128">P.128 Lesson7 Wheelchair BasketballGET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-132" type="checkbox" value="P.132" name="page">
+          <label for="1-132">P.132 Lesson7 Wheelchair Basketball GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-140" type="checkbox" value="P.140" name="page">
+          <label for="1-140">P.140 Wheelchair Basketball 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-142" type="checkbox" value="P.142" name="page">
+          <label for="1-142">P.142 Wheelchair Basketball Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-144" type="checkbox" value="P.144" name="page">
+          <label for="1-144">P.144 7-Speak 偉人を紹介しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-146" type="checkbox" value="P.146" name="page">
+          <label for="1-146">P.146 Take Action! Listen5 Talk5 インタビュー/どんな漫画が好きなの？</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-148" type="checkbox" value="P.148" name="page">
+          <label for="1-148">P.148 GET Plus5 うれしそうですね</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-150" type="checkbox" value="P.150" name="page">
+          <label for="1-150">P.150 Lesson8 Green Festival GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-154" type="checkbox" value="P.154" name="page">
+          <label for="1-154">P.154 Lesson8 Green Festival GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-162" type="checkbox" value="P.162" name="page">
+          <label for="1-162">P.162 Lesson8 Green Festival 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-164" type="checkbox" value="P.164" name="page">
+          <label for="1-164">P.164 Lesson8 Green Festival Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-166" type="checkbox" value="P.166" name="page">
+          <label for="1-166">P.166 8-Write マニフェストを書こう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-168" type="checkbox" value="P.168" name="page">
+          <label for="1-168">P.168 Take Action! Listen6 天気予報</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-170" type="checkbox" value="P.170" name="page">
+          <label for="1-170">P.170 Take Action! Talk6 もう一度言って</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-172" type="checkbox" value="P.172" name="page">
+          <label for="1-172">P.172 GET Plus6 ベッドを整えてくれませんか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-174" type="checkbox" value="P.174" name="page">
+          <label for="1-174">P.174 Project3 大切なものを紹介しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="1-176" type="checkbox" value="P.176" name="page">
+          <label for="1-176">P.176 Reading for Fun Alice and Humpty Dumpty 教科書本文</label>
+        </div>
+      </div>
+  
+      <div id="secondgrade">
+        <div class="form-check">
+          <input class="form-check-input" id="2-54" type="checkbox" value="P.54" name="page">
+          <label for="2-54">P.54 Stater This Month's Books 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-56" type="checkbox" value="P.56" name="page">
+          <label for="2-56">P.56 Lesson1 Peter Rabbit GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-60" type="checkbox" value="P.60" name="page">
+          <label for="2-60">P.60 Lesson1 Peter Rabbit GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-68" type="checkbox" value="P.68" name="page">
+          <label for="2-68">P.68 Lesson1 Peter Rabbit 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-70" type="checkbox" value="P.70" name="page">
+          <label for="2-70">P.70 Lesson1 Peter Rabbit Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-72" type="checkbox" value="P.72" name="page">
+          <label for="2-72">P.72 Take Aciton! Listen1 Talk1 図書館の案内/どんなストーリーなの？</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-74" type="checkbox" value="P.74" name="page">
+          <label for="2-74">P.74 GET Plus 1 試着してもいいですか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-76" type="checkbox" value="P.76" name="page">
+          <label for="2-76">P.76 Lesson2 My Dream GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-80" type="checkbox" value="P.80" name="page">
+          <label for="2-80">P.80 Lesson2 My Dream GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-88" type="checkbox" value="P.88" name="page">
+          <label for="2-88">P.88 Lesson2 My Dream 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-90" type="checkbox" value="P.90" name="page">
+          <label for="2-90">P.90 Lesson2 My Dream Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-92" type="checkbox" value="P.92" name="page">
+          <label for="2-92">P.92 Project1 将来の夢を紹介しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-94" type="checkbox" value="P.94" name="page">
+          <label for="2-94">P.94 Take Action! Listen2 Talk2 チャリティーのお知らせ/それはいい案だね</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-96" type="checkbox" value="P.96" name="page">
+          <label for="2-96">P.96 GET Plus 2 写真を撮ることは楽しい</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-100" type="checkbox" value="P.100" name="page">
+          <label for="2-100">P.100 Lesson3 Every Drop Counts GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-104" type="checkbox" value="P.104" name="page">
+          <label for="2-104">P.104 Lesson3 Every Drop Counts GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-112" type="checkbox" value="P.112" name="page">
+          <label for="2-112">P.112 Lesson3 Every Drop Counts 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-114" type="checkbox" value="P.114" name="page">
+          <label for="2-114">P.114 Lesson3 Every Drop Counts Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-116" type="checkbox" value="P.116" name="page">
+          <label for="2-116">P.116 3-Speak① グループで話し合おう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-118" type="checkbox" value="P.118" name="page">
+          <label for="2-118">P.118 3-Speak② サイコロトークをしよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-120" type="checkbox" value="P.120" name="page">
+          <label for="2-120">P.120 GET Plus 3 魚釣りをしてはいけません</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-124" type="checkbox" value="P.124" name="page">
+          <label for="2-124">P.124 Lesson4 Uluru GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-128" type="checkbox" value="P.128" name="page">
+          <label for="2-128">P.128 Lesson4 Uluru GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-134" type="checkbox" value="P.134" name="page">
+          <label for="2-134">P.134 Lesson4 Uluru 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-136" type="checkbox" value="P.136" name="page">
+          <label for="2-136">P.136 Lesson4 Uluru Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-138" type="checkbox" value="P.138" name="page">
+          <label for="2-138">P.138 4-Write 行ってみたい国についてエッセイを書こう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-140" type="checkbox" value="P.140" name="page">
+          <label for="2-140">P.140 Take Action! Listen3 空港のアナウンス</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-142" type="checkbox" value="P.142" name="page">
+          <label for="2-142">P.142 Take Action! Talk3 何が起きたの？</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-144" type="checkbox" value="P.144" name="page">
+          <label for="2-144">P.144 GET Plus 4 宿題をしなければなりません</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-148" type="checkbox" value="P.148" name="page">
+          <label for="2-148">P.148 Reading for Fun1 A Pot of Poison 1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-150" type="checkbox" value="P.150" name="page">
+          <label for="2-150">P.150 Reading for Fun1 A Pot of Poison 2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-152" type="checkbox" value="P.152" name="page">
+          <label for="2-152">P.152 Lesson5 Things to Do in Japan GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-156" type="checkbox" value="P.156" name="page">
+          <label for="2-156">P.156 Lesson5 Things to Do in Japan GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-160" type="checkbox" value="P.160" name="page">
+          <label for="2-160">P.160 Lesson5 Things to Do in Japan GET3</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-168" type="checkbox" value="P.168" name="page">
+          <label for="2-168">P.168 Lesson5 Things to Do in Japan 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-170" type="checkbox" value="P.170" name="page">
+          <label for="2-170">P.170 Lesson5 Things to Do in Japan Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-172" type="checkbox" value="P.172" name="page">
+          <label for="2-172">P.172 5-Write 人気のあるものを調べてレポートを書こう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-174" type="checkbox" value="P.174" name="page">
+          <label for="2-174">P.174 Take Action! Listen4 Talk4 イベントの紹介/一緒に遊園地に行かない？</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-176" type="checkbox" value="P.176" name="page">
+          <label for="2-176">P.176 GET Plus5 演奏の仕方を教えましょう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-180" type="checkbox" value="P.180" name="page">
+          <label for="2-180">P.180 Project2 修学旅行のプランを提案しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-182" type="checkbox" value="P.182" name="page">
+          <label for="2-182">P.182 Lesson6 Tea from China GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-186" type="checkbox" value="P.186" name="page">
+          <label for="2-186">P.186 Lesson6 Tea from China GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-192" type="checkbox" value="P.192" name="page">
+          <label for="2-192">P.192 Lesson6 Tea from China 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-194" type="checkbox" value="P.194" name="page">
+          <label for="2-194">P.194 Lesson6 Tea from China Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-196" type="checkbox" value="P.196" name="page">
+          <label for="2-196">P.196 6-Write お礼のカードを書こう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-198" type="checkbox" value="P.198" name="page">
+          <label for="2-198">P.198 Take Action! Listen5 Talk5 ラジオニュース/お手伝いしましょうか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-200" type="checkbox" value="P.200" name="page">
+          <label for="2-200">P.200 GET Plus6 大きい声で話していただけますか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-202" type="checkbox" value="P.202" name="page">
+          <label for="2-202">P.202 Lesson7 Rakugo Goes Overseas GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-206" type="checkbox" value="P.206" name="page">
+          <label for="2-206">P.206 Lesson7 Rakugo Goes Overseas GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-214" type="checkbox" value="P.214" name="page">
+          <label for="2-214">P.214 Lesson7 Rakugo Goes Overseas 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-216" type="checkbox" value="P.216" name="page">
+          <label for="2-216">P.216 Lesson7 Rakugo Goes Overseas Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-218" type="checkbox" value="P.218" name="page">
+          <label for="2-218">P.218 7-Speak 7-Write 先生にインタビューしよう/メンバー募集のポスターを作ろう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-220" type="checkbox" value="P.220" name="page">
+          <label for="2-220">P.220 Take Action! Listen6 プレゼントの相談</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-222" type="checkbox" value="P.222" name="page">
+          <label for="2-222">P.222 Take Action! Talk6 それもいい案だと思うけど</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-224" type="checkbox" value="P.224" name="page">
+          <label for="2-224">P.224 Project3 ディスカッションをしよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-226" type="checkbox" value="P.226" name="page">
+          <label for="2-226">P.226 Reading for Fun2 The Little Prince 1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="2-228" type="checkbox" value="P.228" name="page">
+          <label for="2-228">P.228 Reading for Fun2 The Little Prince 2</label>
+        </div>
+      </div>
+
+      <div id="thirdgrade">
+        <div class="form-check">
+          <input class="form-check-input" id="3-52"type="checkbox" value="P.52" name="page">
+          <label for="3-52">P.52 Starter Best Music Of All Time 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-54" type="checkbox" value="P.54" name="page">
+          <label for="3-54">P.54 Lesson1 Stand by Me GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-58" type="checkbox" value="P.58" name="page">
+          <label for="3-58">P.58 Lesson1 Stand by Me GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-64" type="checkbox" value="P.64" name="page">
+          <label for="3-64">P.64 Lesson1 Stand by Me 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-66" type="checkbox" value="P.66" name="page">
+          <label for="3-66">P.66 Leesson1 Stand by Me Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-68" type="checkbox" value="P.68" name="page">
+          <label for="3-68">P.68 1-Speak 世界の中学生に聞いてほしい曲を紹介しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-70" type="checkbox" value="P.70" name="page">
+          <label for="3-70">P.70 Take Action! Listen1 Talk1 避難訓練のアナウンス/おすすめの場所は？</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-72" type="checkbox" value="P.72" name="page">
+          <label for="3-72">P.72 Lesson2 Languages in India GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-76" type="checkbox" value="P.76" name="page">
+          <label for="3-76">P.76 Lesson2 Languages in India GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-84" type="checkbox" value="P.84" name="page">
+          <label for="3-84">P.84 Lesson2 Languages in India 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-86" type="checkbox" value="P.86" name="page">
+          <label for="3-86">P.86 Lesson2 Languages in India Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"id="3-88" type="checkbox" value="P.88" name="page">
+          <label for="3-88">P.88 2-Write おすすめの日本語を紹介しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-90" type="checkbox" value="P.90" name="page">
+          <label for="3-90">P.90 Take Action! Listen2 Talk2 旅行の行き先の相談/どうしてそう思うの?</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-92" type="checkbox" value="P.92" name="page">
+          <label for="3-92">P.92 Project1 日本限定のアイスクリームを提案しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-94" type="checkbox" value="P.94" name="page">
+          <label for="3-94">P.94 Lesson3 The Story of Sadako GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-98" type="checkbox" value="P.98" name="page">
+          <label for="3-98">P.98 Lesson3 The Story of Sadako GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-106" type="checkbox" value="P.106" name="page">
+          <label for="3-106">P.106 Lesson3 The Story of Sadako 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-108" type="checkbox" value="P.108" name="page">
+          <label for="3-108">P.108 Lesson3 The Story of Sadako Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-110" type="checkbox" value="P.110" name="page">
+          <label for="3-110">P.110 3-Write おすすめの本を紹介しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-112" type="checkbox" value="P.112" name="page">
+          <label for="3-112">P.112 ボイスメッセージ/野球と言えば</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-114" type="checkbox" value="P.114" name="page">
+          <label for="3-114">P.114 GET Plus 1 それを聞いてうれしいです</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-116" type="checkbox" value="P.116" name="page">
+          <label for="3-116">P.116 Lesson4 The World's Managa and Anime GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-120" type="checkbox" value="P.120" name="page">
+          <label for="3-120">P.120 Lesson4 The World's of Manga and Anime GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-128" type="checkbox" value="P.128" name="page">
+          <label for="3-128">P.128 Lesson4 The World's Manga and Anime 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-130" type="checkbox" value="P.130" name="page">
+          <label for="3-130">P.130 Lesson4 The World's Manga and Anime Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-132" type="checkbox" value="P.132" name="page">
+          <label for="3-132">P.132 4-Write ボランティアの自己PRカード</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-134" type="checkbox" value="P.134" name="page">
+          <label for="3-134">P.134 Tale Action! Listen4 Talk4 ラジオニュース/道順を教えていただけますか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-136" type="checkbox" value="P.136" name="page">
+          <label for="3-136">P.136 Reading for Fun1 Zorba's Promise 1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-138" type="checkbox" value="P.138" name="page">
+          <label for="3-138">P.138 Reading for Fun1 Zorba's Promise 2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-140" type="checkbox" value="P.140" name="page">
+          <label for="3-140">P.140 Lesson5 I Have a Dream GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-144" type="checkbox" value="P.144" name="page">
+          <label for="3-144">P.144 Lesson5 I Have a Dream GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-152" type="checkbox" value="P.152" name="page">
+          <label for="3-152">P.152 Lesson5 I Have a Dream 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-154" type="checkbox" value="P.154" name="page">
+          <label for="3-154">P.154 Lesson5 I Have a Dream Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-156" type="checkbox" value="P.156" name="page">
+          <label for="3-156">P.156 5-Write 5-Speak 招待状を書こう/街頭インタビューにこたえよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-158" type="checkbox" value="P.158" name="page">
+          <label for="3-158">P.158 Take Action! Listen5 Talk5 落とし物の問い合わせ/サンドイッチに何を入れましょうか</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-160" type="checkbox" value="P.160" name="page">
+          <label for="3-160">P.160 Project2 国際交流イベントに出展しよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-162" type="checkbox" value="P.162" name="page">
+          <label for="3-162">P.162 Lesson6 Imagine to Act GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-166" type="checkbox" value="P.166" name="page">
+          <label for="3-166">P.166 Lesson6 Imagine to Act GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-174" type="checkbox" value="P.174" name="page">
+          <label for="3-174">P.174 Lesson6 Imagine to Act 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-176" type="checkbox" value="P.176" name="page">
+          <label for="3-176">P.176 Lesson6 Imagine to Act Read</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-178" type="checkbox" value="P.178" name="page">
+          <label for="3-178">P.178 6-Write 英語の詩を書こう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-180" type="checkbox" value="P.180" name="page">
+          <label for="3-180">P.180 Take Action! Listen6 Talk6 スピーチ/あなたはどう思う?</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-182" type="checkbox" value="P.182" name="page">
+          <label for="3-182">P.182 GET Plus 2 もし私があなたなら</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-186" type="checkbox" value="P.186" name="page">
+          <label for="3-186">P.186 Lesson7 For Our Future GET1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-190" type="checkbox" value="P.190" name="page">
+          <label for="3-190">P.190 Lesson7 For Our Future GET2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-198" type="checkbox" value="P.198" name="page">
+          <label for="3-198">P.198 Lesson7 For Our Future 教科書本文</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-200" type="checkbox" value="P.200" name="page">
+          <label for="3-200">P.200 Lesson7 For Our Future Read①</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-202" type="checkbox" value="P.202" name="page">
+          <label for="3-202">P.202 Lesson7 For Our Future Read②</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-204" type="checkbox" value="P.204" name="page">
+          <label for="3-204">P.204 7-Speak 20歳の自分にビデオメッセージを作ろう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-206" type="checkbox" value="P.206" name="page">
+          <label for="3-206">P.206 GET Plus 3 教室の飾りつけをしてもらいたいです</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-210" type="checkbox" value="P.210" name="page">
+          <label for="3-210">P.210 Project3 ディスカッションをしよう</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-212" type="checkbox" value="P.212" name="page">
+          <label for="3-212">P.212 Reading for Fun2 A Present for You 1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-214" type="checkbox" value="P.214" name="page">
+          <label for="3-214">P.214 Reading for Fun2 A Present for You 2</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-216" type="checkbox" value="P.216" name="page">
+          <label for="3-216">P.216 Reading for Fun3 Learning from Nature 1</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="3-218" type="checkbox" value="P.218" name="page">
+          <label for="3-218">P.218 Reading for Fun3 Learning from Nature 2</label>
+        </div>
+      </div>
+      <br>
+      <input type="submit"value="作成［Enter］" class="button">
+      <p></p>
+      <h3 class="msr_h3">注意</h3>
+      <ul>
+        <li>一部の固有名詞等は省略されていることがあります</li>
+        <li>誤字、脱字をしていることがあります</li>
+        <li>このアプリケーションはGoogle Apps Scriptを使用して作成されています</li>
+        <li>動作確認ブラウザ (Google Chrome , Microsoft Edge)</li>
+      </ul>
+      <br><br>
+      <div style="text-align:right">作成　　Wam 山の下校、石山校</div>
+      <div style="text-align:right">フォレスタ 21 初版より作成</div>
+      <br><br>
+      </form>
+    <script>
+      function formSwitch() {
+        hoge = document.getElementsByName("grade")
+        if (hoge[0].checked) {
+            document.getElementById("firstgrade").style.display = "";
+            document.getElementById("secondgrade").style.display = "none";
+            document.getElementById("thirdgrade").style.display = "none";
+            var inputItem = document.getElementById("secondgrade").getElementsByTagName("input");
+            for(var i=0; i<inputItem.length; i++){
+              inputItem[i].checked = "";
+            }
+            inputItem = document.getElementById("thirdgrade").getElementsByTagName("input");
+            for(var i=0; i<inputItem.length; i++){
+              inputItem[i].checked = "";
+            }
+        } else if (hoge[1].checked) {
+            document.getElementById("firstgrade").style.display = "none";
+            document.getElementById("thirdgrade").style.display = "none";
+            var inputItem = document.getElementById("firstgrade").getElementsByTagName("input");
+            for(var i=0; i<inputItem.length; i++){
+              inputItem[i].checked = "";
+            }
+            inputItem = document.getElementById("thirdgrade").getElementsByTagName("input");
+            for(var i=0; i<inputItem.length; i++){
+              inputItem[i].checked = "";
+            }
+            document.getElementById("secondgrade").style.display = "";
+        } else if (hoge[2].checked) {
+          document.getElementById("firstgrade").style.display = "none";
+          document.getElementById("secondgrade").style.display = "none";
+          var inputItem = document.getElementById("firstgrade").getElementsByTagName("input");
+          for(var i=0; i<inputItem.length; i++){
+            inputItem[i].checked = "";
+          }
+          inputItem = document.getElementById("secondgrade").getElementsByTagName("input");
+          for(var i=0; i<inputItem.length; i++){
+            inputItem[i].checked = "";
+          }
+          document.getElementById("thirdgrade").style.display = "";
+        } else {
+          document.getElementById("firstgrade").style.display = "none";
+          var inputItem = document.getElementById("firstgrade").getElementsByTagName("input");
+          for(var i=0; i<selectItem.length; i++){
+            inputItem[i].value = "";
+          }
+          document.getElementById("secondgrade").style.display = "none";
+          inputItem = document.getElementById("secondgrade").getElementsByTagName("input");
+          for(var i=0; i<inputItem.length; i++){
+            inputItem[i].checked = "";
+          }
+          document.getElementById("thirdgrade").style.display = "none";
+          inputItem = document.getElementById("thirddgrade").getElementsByTagName("input");
+          for(var i=0; i<inputItem.length; i++){
+            inputItem[i].checked = "";
+          }
+        }
+      }
+    window.addEventListener('load', formSwitch());
+    </script>
+  </body>
+</html>
