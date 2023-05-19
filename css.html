@@ -1,0 +1,60 @@
+<style>
+body {
+  margin: 0px 10%;
+  padding: 0px;
+}
+
+a {
+    text-decoration:none; 
+}
+
+.msr_h2 {
+  background: #F8F8F8;
+  border-top: 2px solid #186D4E;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+  box-sizing: border-box;
+  color: #186D4E;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 20px;
+  padding: 10px 15px 10px;
+}
+.msr_h3 {
+  border-bottom: 2px solid #186D4E;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 20px;
+  padding-bottom: 5px;
+}
+.msr_h4 {
+  border-left: 2px solid #186D4E;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 20px;
+  padding-left: 5px;
+}
+
+.link {
+	position: relative;
+	padding: 0.1em 0.3em;
+	display: inline-block;
+	transition: .3s;
+	color: #000080;
+}
+.link::after {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	content: '';
+	width: 0;
+	height: 1px;
+	background-color: #186D4E;
+	transition: .3s;
+	transform: translateX(-50%);
+}
+.link:hover::after {
+	width: 100%;
+}
+</style>
